@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: com.tinder.scarlet:message-adapter-gson:0.1.10">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.tinder.scarlet/message-adapter-gson/0.1.10/9443a7146c5f3b352ec191d3dcd8392a802c70bb/message-adapter-gson-0.1.10.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.tinder.scarlet/message-adapter-gson/0.1.10/8dd28fb47f1c40e50d7a785570d196e6991fe279/message-adapter-gson-0.1.10-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.tinder.scarlet/message-adapter-gson/0.1.10/9a44c6b818347b6176d4612018f4013ae86a6436/message-adapter-gson-0.1.10-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: com.tinder.scarlet:scarlet-core:0.1.10">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.tinder.scarlet/scarlet-core/0.1.10/4db27ad34410b852766d810c6fc1056494450072/scarlet-core-0.1.10.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.tinder.scarlet/scarlet-core/0.1.10/1826d9f4d4fc37db7f6ed9238d69a6b8563fe5e6/scarlet-core-0.1.10-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.tinder.scarlet/scarlet-core/0.1.10/1a772afb5579749702e25e49df866b5130b5e50d/scarlet-core-0.1.10-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

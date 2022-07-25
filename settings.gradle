@@ -1,0 +1,7 @@
+include ':core'
+include ':app'
+rootProject.name = "Framework"
+include ':ethereumkit'
+include ':erc20kit'
+include ':oneinchkit'
+include ':uniswapkit'

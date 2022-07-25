@@ -1,0 +1,248 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+
+    // kotlin version
+    ext.kotlin_version = '1.6.10'
+    ext.room_version = '2.4.0'
+
+    // google services version
+    ext.gmsVersion = '4.3.3'
+
+    repositories {
+        google()
+        mavenCentral()
+        maven { url 'https://jitpack.io' }
+    }
+
+    dependencies {
+        classpath "com.android.tools.build:gradle:7.1.2"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+        classpath "com.google.gms:google-services:$gmsVersion"
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        maven { url 'https://jitpack.io' }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+ext {
+    // 0.0.1
+    majorNumber = 0
+    minorNumber = 0
+    patchNumber = 1
+
+    // To enable beta phase, change the beta_number above 0.
+    betaNumber = 0
+    postfixName = 'beta'
+
+    // Adder for version code
+    ext.adderNumber = 0
+
+    // Generate version code
+    ext.generateVersionCode = { majorNumber, minorNumber, patchNumber, adderNumber, betaNumber ->
+        if (betaNumber > 0) {
+            return (majorNumber * 100000000) + (minorNumber * 1000000) + (patchNumber * 10000) + ((adderNumber - 1) * 100) + betaNumber
+        } else {
+            return (majorNumber * 100000000) + (minorNumber * 1000000) + (patchNumber * 10000) + (adderNumber * 100)
+        }
+    }
+
+    // Generate version name
+    ext.generateVersionName = { majorNumber, minorNumber, patchNumber, adderNumber, betaNumber, postfixName ->
+        if (betaNumber > 0) {
+            return "${majorNumber}.${minorNumber}.${patchNumber} ${postfixName} ${betaNumber}"
+        } else {
+            return "${majorNumber}.${minorNumber}.${patchNumber}"
+        }
+    }
+
+    // Default Config
+    compileSdkVersion = 31
+    targetSdkVersion = 31
+    minSdkVersion = 26
+    applicationId = 'com.suki.wallet'
+    versionCode = generateVersionCode(majorNumber, minorNumber, patchNumber, adderNumber, betaNumber)
+    versionName = generateVersionName(majorNumber, minorNumber, patchNumber, adderNumber, betaNumber, postfixName)
+
+    // Google Android Related
+    def androidxAppCompat = '1.1.0'
+    def androidx = '1.1.0'
+    def legacy = '1.0.0'
+    def material = '1.3.0'
+    def constraintLayout = '1.1.3'
+    def recyclerView = '1.1.0'
+    def lifecycle = '2.1.0'
+    def multiDex = '1.0.3'
+    def navigation = '2.3.0-beta01'
+    def paging = '2.1.2'
+    def gson = '2.8.6'
+    def coroutines = '1.3.1'
+
+    // Firebase Related
+    def analytics = '17.3.0'
+    def messaging = '20.1.0'
+    def auth = '19.3.1'
+
+    // Google Services
+    def googleServicesAuth = '18.0.0'
+
+    // Network
+    def okHttp = '4.2.1'
+    def retrofit = '2.6.2'
+
+    // Glide
+    def glide = '4.10.0'
+
+    // External
+    def timber = '4.7.1'
+
+    def kotlinLibs = [
+            kotlin: "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version",
+    ]
+
+    def androidLibs = [
+            appcompat         : "androidx.appcompat:appcompat:$androidxAppCompat",
+            core              : "androidx.core:core-ktx:$androidxAppCompat",
+            preference        : "androidx.preference:preference-ktx:$androidx",
+            legacy            : "androidx.legacy:legacy-support-v4:$legacy",
+            design            : "com.google.android.material:material:$material",
+            constraintLayout  : "androidx.constraintlayout:constraintlayout:$constraintLayout",
+            recyclerView      : "androidx.recyclerview:recyclerview:$recyclerView",
+            lifecycleExensions: "androidx.lifecycle:lifecycle-extensions:$lifecycle",
+            lifecycleCompiler : "androidx.lifecycle:lifecycle-compiler:$lifecycle",
+            lifecycleViewModel: "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle",
+            multiDex          : "com.android.support:multidex:$multiDex",
+            navigationFragment: "androidx.navigation:navigation-fragment-ktx:$navigation",
+            navigationUI      : "androidx.navigation:navigation-ui-ktx:$navigation",
+            paging            : "androidx.paging:paging-runtime:$paging",
+            gson              : "com.google.code.gson:gson:$gson",
+            coroutinesCore    : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines",
+            coroutinesAndroid : "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines"
+    ]
+
+    def firebaseLibs = [
+            analytics: "com.google.firebase:firebase-analytics:$analytics",
+            messaging: "com.google.firebase:firebase-messaging:$messaging",
+            auth     : "com.google.firebase:firebase-auth:$auth"
+    ]
+
+    def googleServicesLibs = [
+            auth: "com.google.android.gms:play-services-auth:$googleServicesAuth"
+    ]
+
+    def networkLibs = [
+            retrofit      : "com.squareup.retrofit2:retrofit:$retrofit",
+            retrofitRxJava: "com.squareup.retrofit2:adapter-rxjava2:$retrofit",
+            retrofitGson  : "com.squareup.retrofit2:converter-gson:$retrofit",
+            okhttp3       : "com.squareup.okhttp3:okhttp:$okHttp"
+    ]
+
+    def imageLibs = [
+            glide        : "com.github.bumptech.glide:glide:$glide",
+            glideCompiler: "com.github.bumptech.glide:compiler:$glide"
+    ]
+
+    def externalLib = [
+            timber: "com.jakewharton.timber:timber:$timber",
+    ]
+
+    coreDependencies = [
+            // Google Android Related
+            [config: "implementation", dependency: kotlinLibs.kotlin, closure: {}],
+            [config: "implementation", dependency: androidLibs.appcompat, closure: {}],
+            [config: "implementation", dependency: androidLibs.legacy, closure: {}],
+            [config: "implementation", dependency: androidLibs.core, closure: {}],
+            [config: "implementation", dependency: androidLibs.preference, closure: {}],
+            [config: "implementation", dependency: androidLibs.design, closure: {}],
+            [config: "implementation", dependency: androidLibs.constraintLayout, closure: {}],
+            [config: "implementation", dependency: androidLibs.recyclerView, closure: {}],
+            [config: "implementation", dependency: androidLibs.lifecycleExensions, closure: {}],
+            [config: "kapt", dependency: androidLibs.lifecycleCompiler, closure: {}],
+            [config: "implementation", dependency: androidLibs.lifecycleViewModel, closure: {}],
+            [config: "implementation", dependency: androidLibs.multiDex, closure: {}],
+            [config: "implementation", dependency: androidLibs.navigationFragment, closure: {}],
+            [config: "implementation", dependency: androidLibs.navigationUI, closure: {}],
+            [config: "implementation", dependency: androidLibs.paging, closure: {}],
+            [config: "implementation", dependency: androidLibs.gson, closure: {}],
+            [config: "implementation", dependency: androidLibs.coroutinesAndroid, closure: {}],
+            [config: "implementation", dependency: androidLibs.coroutinesCore, closure: {}],
+
+            // Firebase Related
+            [config: "implementation", dependency: firebaseLibs.analytics, closure: {}],
+            [config: "implementation", dependency: firebaseLibs.messaging, closure: {}],
+            [config: "implementation", dependency: firebaseLibs.auth, closure: {}],
+
+            // Google Services
+            [config: "implementation", dependency: googleServicesLibs.auth, closure: {}],
+
+            // Network
+            [config: "implementation", dependency: networkLibs.retrofit, closure: {}],
+            [config: "implementation", dependency: networkLibs.retrofitRxJava, closure: {}],
+            [config: "implementation", dependency: networkLibs.retrofitGson, closure: {}],
+            [config: "implementation", dependency: networkLibs.okhttp3, closure: {}],
+
+            // Glide
+            [config: "implementation", dependency: imageLibs.glide, closure: {}],
+            [config: "kapt", dependency: imageLibs.glideCompiler, closure: {}],
+
+            // External
+            [config: "implementation", dependency: externalLib.timber, clousure: {}]
+    ]
+
+    appDependencies = [
+            // Google Android Related
+            [config: "implementation", dependency: kotlinLibs.kotlin, closure: {}],
+            [config: "implementation", dependency: androidLibs.appcompat, closure: {}],
+            [config: "implementation", dependency: androidLibs.legacy, closure: {}],
+            [config: "implementation", dependency: androidLibs.core, closure: {}],
+            [config: "implementation", dependency: androidLibs.preference, closure: {}],
+            [config: "implementation", dependency: androidLibs.design, closure: {}],
+            [config: "implementation", dependency: androidLibs.constraintLayout, closure: {}],
+            [config: "implementation", dependency: androidLibs.recyclerView, closure: {}],
+            [config: "implementation", dependency: androidLibs.lifecycleExensions, closure: {}],
+            [config: "kapt", dependency: androidLibs.lifecycleCompiler, closure: {}],
+            [config: "implementation", dependency: androidLibs.lifecycleViewModel, closure: {}],
+            [config: "implementation", dependency: androidLibs.multiDex, closure: {}],
+            [config: "implementation", dependency: androidLibs.navigationFragment, closure: {}],
+            [config: "implementation", dependency: androidLibs.navigationUI, closure: {}],
+            [config: "implementation", dependency: androidLibs.paging, closure: {}],
+            [config: "implementation", dependency: androidLibs.gson, closure: {}],
+            [config: "implementation", dependency: androidLibs.coroutinesAndroid, closure: {}],
+            [config: "implementation", dependency: androidLibs.coroutinesCore, closure: {}],
+
+            // Firebase Related
+            [config: "implementation", dependency: firebaseLibs.analytics, closure: {}],
+            [config: "implementation", dependency: firebaseLibs.messaging, closure: {}],
+            [config: "implementation", dependency: firebaseLibs.auth, closure: {}],
+
+            // Google Services
+            [config: "implementation", dependency: googleServicesLibs.auth, closure: {}],
+
+            // Network
+            [config: "implementation", dependency: networkLibs.retrofit, closure: {}],
+            [config: "implementation", dependency: networkLibs.retrofitRxJava, closure: {}],
+            [config: "implementation", dependency: networkLibs.retrofitGson, closure: {}],
+            [config: "implementation", dependency: networkLibs.okhttp3, closure: {}],
+
+            // Glide
+            [config: "implementation", dependency: imageLibs.glide, closure: {}],
+            [config: "kapt", dependency: imageLibs.glideCompiler, closure: {}],
+
+            // External
+            [config: "implementation", dependency: externalLib.timber, clousure: {}],
+
+            // Modules
+            [config: "implementation", dependency: project(':core')]
+    ]
+}

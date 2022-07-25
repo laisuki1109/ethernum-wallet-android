@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">core</string>
+
+    <!--Facebook app id-->
+    <string name="facebook_app_id">725604048213143</string>
+
+    <!--Google web client id-->
+    <string name="default_web_client_id">1086310359509-m1q21frlgckjftuf9gucs8fg7t32ucss.apps.googleusercontent.com</string>
+
+    <string name="btn_ok">OK</string>
+    <string name="error_network">The network is unavailable. Please try it later.</string>
+
+    <string name="dialog_title_rooted">Device is not able to support this mobile application.</string>
+</resources>

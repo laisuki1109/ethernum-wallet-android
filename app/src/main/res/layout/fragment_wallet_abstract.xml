@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.suki.wallet.app.walletAbstract.WalletViewModel" />
+
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            tools:context=".app.walletAbstract.WalletAbstractFragment">
+
+            <!--        wallet address-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/size_small"
+                android:layout_marginTop="@dimen/size_large"
+                android:background="@drawable/bg_primary_border_16dp"
+                android:padding="@dimen/size_small">
+
+                <ImageView
+                    android:id="@+id/image_wallet_address"
+                    android:layout_width="@dimen/size_image_qr_code"
+                    android:layout_height="@dimen/size_image_qr_code"
+                    android:adjustViewBounds="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/text_wallet_address"
+                    style="@style/TextRegular12dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/size_small"
+                    android:text="@{viewModel.addressEip55}"
+                    android:textAlignment="center"
+                    app:layout_constraintTop_toBottomOf="@id/image_wallet_address" />
+
+                <Button
+                    android:id="@+id/btn_copy"
+                    style="@style/PrimaryButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/size_small"
+                    android:layout_marginTop="@dimen/size_small"
+                    android:text="@string/copy_address"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/text_wallet_address" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!--        balance-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/size_small"
+                android:layout_marginTop="@dimen/size_small"
+                android:background="@drawable/bg_primary_border_16dp"
+                android:padding="@dimen/size_small">
+
+                <TextView
+                    android:id="@+id/title_balance"
+                    style="@style/TextRegular16dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/balance"
+                    android:textColor="@color/colorBlack"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/text_balance"
+                    style="@style/TextRegular16dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/size_small"
+                    android:textAlignment="viewEnd"
+                    android:textColor="@color/colorGrey"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/title_balance"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:setBalance="@{viewModel.balance}"
+                    tools:text="10000" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_small"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btn_refresh"
+                    style="@style/PrimaryButton"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/size_small"
+                    android:onClick="@{ () -> viewModel.refresh()}"
+                    android:text="@string/refresh" />
+
+                <Button
+                    android:id="@+id/btn_send"
+                    style="@style/PrimaryButton"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/size_small"
+                    android:text="@string/send" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_small"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btn_history"
+                    style="@style/PrimaryButton"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/size_small"
+                    android:text="@string/history" />
+
+                <Button
+                    android:id="@+id/btn_recover"
+                    style="@style/PrimaryButton"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/size_small"
+                    android:text="@string/recover" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_logout"
+                style="@style/PrimaryButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/size_small"
+                android:layout_marginTop="@dimen/size_small"
+                android:text="@string/logout" />
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+</layout>

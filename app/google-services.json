@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "28046981752",
+    "firebase_url": "https://framework-30fe5.firebaseio.com",
+    "project_id": "framework-30fe5",
+    "storage_bucket": "framework-30fe5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:28046981752:android:db5e751d11142829600b8d",
+        "android_client_info": {
+          "package_name": "com.innopage.framework"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "28046981752-e16tfsam4o2l0t488bjl0opfvgvhvjdk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSUl5cocYR7grTBgwjmsjzNu8ekUTVw9w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "28046981752-e16tfsam4o2l0t488bjl0opfvgvhvjdk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

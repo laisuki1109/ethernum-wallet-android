@@ -1,0 +1,104 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+// TODO: Enable Firebase and google-services.json
+//apply plugin: 'com.google.gms.google-services'
+
+android {
+    compileSdkVersion rootProject.compileSdkVersion
+
+    defaultConfig {
+        applicationId rootProject.applicationId
+        minSdkVersion rootProject.minSdkVersion
+        targetSdkVersion rootProject.targetSdkVersion
+        versionCode rootProject.versionCode
+        versionName rootProject.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    flavorDimensions "version"
+    productFlavors {
+        // TODO: Define hostname and BASE_URL
+        uat {
+            applicationId rootProject.applicationId
+            manifestPlaceholders = [hostName: "drkong.dev.innopage.com"]
+            buildConfigField "String", "BASE_URL", '"https://drkong.dev.innopage.com/"'
+        }
+
+        production {
+            applicationId rootProject.applicationId
+            manifestPlaceholders = [hostName: "drkong.dev.innopage.com"]
+            buildConfigField "String", "BASE_URL", '"https://drkong.dev.innopage.com/"'
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    // Enable data binding
+    buildFeatures {
+        dataBinding = true
+    }
+
+    // Enable kotlin android extensions
+    androidExtensions {
+        experimental = true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+
+    kotlinOptions {
+        jvmTarget = "11"
+//        freeCompilerArgs += [
+//                "-Xjvm-default=all",
+//        ]
+    }
+
+    packagingOptions {
+        resources {
+            excludes += ['META-INF/rxjava.properties']
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation 'androidx.appcompat:appcompat:1.4.2'
+    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+//    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.5.0'
+//    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.0'
+
+    //encryption
+    implementation 'androidx.security:security-crypto:1.1.0-alpha02'
+
+    // wallet
+    implementation 'com.github.horizontalsystems:hd-wallet-kit-android:1642a09'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.19'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    implementation 'org.bouncycastle:bcpkix-jdk15on:1.65'
+
+    // qr code
+    implementation 'com.journeyapps:zxing-android-embedded:4.3.0'
+    implementation 'com.google.android.gms:play-services-vision:20.1.3'
+    
+    implementation project(':ethereumkit')
+    implementation project(':erc20kit')
+    implementation project(':uniswapkit')
+    implementation project(':oneinchkit')
+
+    rootProject.appDependencies.each {
+        add(it.config, it.dependency, it.closure)
+    }
+
+}

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Framework.iml" filepath="$PROJECT_DIR$/.idea/modules/Framework.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Framework.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Framework.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Framework.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Framework.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Framework.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Framework.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Framework.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Framework.app.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/core/Framework.core.iml" filepath="$PROJECT_DIR$/.idea/modules/core/Framework.core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/core/Framework.core.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/core/Framework.core.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/core/Framework.core.main.iml" filepath="$PROJECT_DIR$/.idea/modules/core/Framework.core.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/core/Framework.core.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/core/Framework.core.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/erc20kit/Framework.erc20kit.iml" filepath="$PROJECT_DIR$/.idea/modules/erc20kit/Framework.erc20kit.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/erc20kit/Framework.erc20kit.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/erc20kit/Framework.erc20kit.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/erc20kit/Framework.erc20kit.main.iml" filepath="$PROJECT_DIR$/.idea/modules/erc20kit/Framework.erc20kit.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/erc20kit/Framework.erc20kit.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/erc20kit/Framework.erc20kit.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ethereumkit/Framework.ethereumkit.iml" filepath="$PROJECT_DIR$/.idea/modules/ethereumkit/Framework.ethereumkit.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ethereumkit/Framework.ethereumkit.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/ethereumkit/Framework.ethereumkit.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ethereumkit/Framework.ethereumkit.main.iml" filepath="$PROJECT_DIR$/.idea/modules/ethereumkit/Framework.ethereumkit.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ethereumkit/Framework.ethereumkit.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/ethereumkit/Framework.ethereumkit.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/oneinchkit/Framework.oneinchkit.iml" filepath="$PROJECT_DIR$/.idea/modules/oneinchkit/Framework.oneinchkit.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/oneinchkit/Framework.oneinchkit.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/oneinchkit/Framework.oneinchkit.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/oneinchkit/Framework.oneinchkit.main.iml" filepath="$PROJECT_DIR$/.idea/modules/oneinchkit/Framework.oneinchkit.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/oneinchkit/Framework.oneinchkit.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/oneinchkit/Framework.oneinchkit.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/uniswapkit/Framework.uniswapkit.iml" filepath="$PROJECT_DIR$/.idea/modules/uniswapkit/Framework.uniswapkit.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/uniswapkit/Framework.uniswapkit.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/uniswapkit/Framework.uniswapkit.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/uniswapkit/Framework.uniswapkit.main.iml" filepath="$PROJECT_DIR$/.idea/modules/uniswapkit/Framework.uniswapkit.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/uniswapkit/Framework.uniswapkit.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/uniswapkit/Framework.uniswapkit.unitTest.iml" />
+    </modules>
+  </component>
+</project>

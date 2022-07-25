@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: com.tinder.scarlet:stream-adapter-rxjava2:0.1.10">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.tinder.scarlet/stream-adapter-rxjava2/0.1.10/65596e2989176b767053b3530f40641416345d20/stream-adapter-rxjava2-0.1.10.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.tinder.scarlet/stream-adapter-rxjava2/0.1.10/9388348498285418047c52a10ecb143c854fbfbb/stream-adapter-rxjava2-0.1.10-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.tinder.scarlet/stream-adapter-rxjava2/0.1.10/860f39b78f3ca210a83f21fa993e87e8d436616a/stream-adapter-rxjava2-0.1.10-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

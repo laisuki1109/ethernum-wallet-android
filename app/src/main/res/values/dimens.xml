@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!--Size-->
+    <dimen name="size_largest">32dp</dimen>
+    <dimen name="size_larger">28dp</dimen>
+    <dimen name="size_large">24dp</dimen>
+    <dimen name="size_normal">20dp</dimen>
+    <dimen name="size_small">16dp</dimen>
+    <dimen name="size_smaller">12dp</dimen>
+    <dimen name="size_smallest">8dp</dimen>
+
+    <!--Font Size-->
+    <dimen name="font_size_largest">2sp</dimen>
+    <dimen name="font_size_larger">20sp</dimen>
+    <dimen name="font_size_large">18sp</dimen>
+    <dimen name="font_size_normal">16sp</dimen>
+    <dimen name="font_size_small">14sp</dimen>
+    <dimen name="font_size_smaller">12sp</dimen>
+    <dimen name="font_size_smallest">10sp</dimen>
+
+    <!--    wallet-->
+    <dimen name="size_image_qr_code">200dp</dimen>
+</resources>

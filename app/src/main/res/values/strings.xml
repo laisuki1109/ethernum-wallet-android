@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">Wallet</string>
+
+    <!--    Init wallet-->
+    <string name="create_wallet">Create Wallet</string>
+    <string name="restore_wallet">Restore Wallet</string>
+    <string name="generate">Generate</string>
+    <string name="restore_wallet_hint">Please input 12 words to restore your wallet</string>
+    <string name="restore_wallet_success_title">Restore Wallet Success</string>
+    <string name="create_wallet_success_title">Create Wallet Success</string>
+    <string name="restore_wallet_success_ok">See Wallet Abstract</string>
+
+    <!--    Wallet Abstract-->
+    <string name="logout">Logout</string>
+    <string name="copy_address">Copy Address</string>
+    <string name="balance">Balance</string>
+    <string name="refresh">Refresh</string>
+    <string name="send">Send</string>
+    <string name="scan_qr_code">Scan QR Code</string>
+    <string name="history">History</string>
+    <string name="recover">Recover</string>
+    <string name="dialog_title_recover">Please remember this 12 words by order to restore wallet.</string>
+
+    <!--    Send Transaction-->
+    <string name="send_address_hint">To address</string>
+    <string name="amount_hint">Amount</string>
+    <string name="estimated_gas">Estimated Gas: </string>
+
+    <!--Scan Qrcode-->
+    <string name="btn_album">Album</string>
+    <string name="header_scan_qrcode">QR Code Scanner</string>
+    <string name="sub_header_scan_qrcode">Scan the QR Code to get address</string>
+    <string name="header_scan_qrcode_disable">Scanner Disabled</string>
+    <string name="sub_header_scan_qrcode_disable">Please enable camera to scan QR code to scan</string>
+    <string name="btn_access_camera">Enable Access Camera</string>
+</resources>
