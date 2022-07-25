@@ -69,7 +69,8 @@
                                               <map>
                                                 <entry key="color" value="000000" />
                                                 <entry key="imagePath" value="/private/var/folders/yd/26zlr1mn4g52z6jf3ch9zgfr0000gq/T/baseline_account_balance_wallet_24.xml" />
-                                                <entry key="scalingPercent" value="67" />
+                                                <entry key="scalingPercent" value="61" />
+                                                <entry key="trimmed" value="true" />
                                               </map>
                                             </option>
                                           </PersistentState>
