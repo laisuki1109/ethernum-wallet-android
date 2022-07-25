@@ -78,7 +78,7 @@ class FirebaseMessagingService : FirebaseMessagingService() {
             .setContentIntent(pendingIntent)
             .setContentTitle(title)
             .setContentText(body)
-            .setSmallIcon(R.mipmap.ic_launcher_foreground)
+            .setSmallIcon(R.mipmap.ic_launcher)
             .setStyle(NotificationCompat.BigTextStyle().bigText(body))
             .setColor(ContextCompat.getColor(baseContext, R.color.colorPrimary))
             .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
