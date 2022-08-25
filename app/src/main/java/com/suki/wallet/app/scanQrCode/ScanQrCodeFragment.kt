@@ -34,6 +34,7 @@ import com.suki.wallet.databinding.FragmentScanQrCodeBinding
 import java.io.File
 import java.io.IOException
 
+
 class ScanQrCodeFragment : BaseFragment<ScanQrCodeViewModel>() {
     private var mQrCodeReaderSurfaceView: SurfaceView? = null
     private var mBarcodeDetector: BarcodeDetector? = null

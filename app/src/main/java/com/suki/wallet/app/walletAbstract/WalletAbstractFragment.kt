@@ -22,6 +22,7 @@ import com.suki.wallet.R
 import com.suki.wallet.app.walletAbstract.send.SendTransactionFragment
 import com.suki.wallet.databinding.FragmentWalletAbstractBinding
 import com.journeyapps.barcodescanner.BarcodeEncoder
+import com.suki.wallet.app.walletConnect.WalletConnectTestingActivity
 import timber.log.Timber
 
 class WalletAbstractFragment : BaseFragment<WalletViewModel>() {
@@ -59,8 +60,14 @@ class WalletAbstractFragment : BaseFragment<WalletViewModel>() {
             MyApplication.INSTANCE.addressWords = ""
             goToLaunchActivty()
         }
-        binding.btnSend.setOnClickListener {
-            goToSendFragment()
+        binding.layoutEthBalance.setOnClickListener {
+            goToSendFragment(isErcToken = false)
+        }
+        binding.layoutTokenBalance.setOnClickListener {
+            goToSendFragment(isErcToken = true)
+        }
+        binding.btnConnect.setOnClickListener {
+            goToWalletConnect()
         }
         handleObserver()
         viewModel.init()
@@ -78,6 +85,8 @@ class WalletAbstractFragment : BaseFragment<WalletViewModel>() {
             binding.btnHistory.setOnClickListener { goToViewHistory(address) }
             binding.btnRecover.setOnClickListener { popUpRecoverPhrase() }
         })
+
+
     }
 
     private fun goToLaunchActivty(){
@@ -110,8 +119,8 @@ class WalletAbstractFragment : BaseFragment<WalletViewModel>() {
         Timber.i("address = $text")
     }
 
-    private fun goToSendFragment(){
-        val fragment = SendTransactionFragment()
+    private fun goToSendFragment(isErcToken: Boolean){
+        val fragment = SendTransactionFragment(isErcToken)
         requireActivity().supportFragmentManager.beginTransaction()
             .add(R.id.container, fragment)
             .addToBackStack(null)
@@ -132,6 +141,11 @@ class WalletAbstractFragment : BaseFragment<WalletViewModel>() {
                 dialog.dismiss()
             }.create()
         alertDialog.show()
+    }
+
+    private fun goToWalletConnect(){
+        val intent = Intent(requireContext(), WalletConnectTestingActivity::class.java)
+        startActivity(intent)
     }
 
 }

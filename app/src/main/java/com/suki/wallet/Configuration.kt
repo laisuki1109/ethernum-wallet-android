@@ -22,13 +22,8 @@ object Configuration {
                     Erc20Token("DAI", "DAI", Address("0x6b175474e89094c44da98b954eedeac495271d0f"), 18),
                     Erc20Token("USD Coin", "USDC", Address("0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48"), 6)
                 )
-                Chain.BinanceSmartChain -> listOf(
-                    Erc20Token("Beefy.Finance", "BIFI", Address("0xCa3F508B8e4Dd382eE878A314789373D80A5190A"), 18),
-                    Erc20Token("PancakeSwap", "CAKE", Address("0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82"), 18),
-                    Erc20Token("BUSD", "BUSD", Address("0xe9e7cea3dedca5984780bafc599bd69add087d56"), 18)
-                )
                 Chain.EthereumRopsten -> listOf(
-                    Erc20Token("DAI", "DAI", Address("0xad6d458402f60fd3bd25163575031acdce07538d"), 18),
+                    Erc20Token("USD Coin", "USDC", Address("0x617e2a9e839ea3bc55068828bd4e2036e84a1fd3"), 18),
                     Erc20Token("WEENUS", "WEENUS", Address("0x101848d5c5bbca18e6b4431eedf6b95e9adf82fa"), 18)
                 )
                 else -> listOf()

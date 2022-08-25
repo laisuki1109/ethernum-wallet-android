@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/size_small">
+
+        <TextView
+            android:id="@+id/text_wc_name_title"
+            style="@style/TextRegular16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/wallet_connect_name"
+            android:textColor="@color/colorBlack"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/text_wc_name"
+            style="@style/TextRegular12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/text_wc_name_title"
+            tools:text="Wallet connect session name" />
+
+        <TextView
+            android:id="@+id/text_wc_url_title"
+            style="@style/TextRegular16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_small"
+            android:text="@string/wallet_connect_url"
+            android:textColor="@color/colorBlack"
+            app:layout_constraintTop_toBottomOf="@id/text_wc_name" />
+
+        <TextView
+            android:id="@+id/text_wc_url"
+            style="@style/TextRegular12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/text_wc_url_title"
+            tools:text="Wallet connect session url" />
+
+        <TextView
+            android:id="@+id/text_wc_desc_title"
+            style="@style/TextRegular16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_small"
+            android:text="@string/wallet_connect_description"
+            android:textColor="@color/colorBlack"
+            app:layout_constraintTop_toBottomOf="@id/text_wc_url" />
+
+        <TextView
+            android:id="@+id/text_wc_desc"
+            style="@style/TextRegular12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/text_wc_desc_title"
+            tools:text="Wallet connect session description" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_small"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/text_wc_desc">
+
+            <Button
+                android:id="@+id/btn_cancel"
+                style="@style/PrimaryButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/size_small"
+                android:layout_weight="1"
+                android:text="@string/btn_cancel" />
+
+            <Button
+                android:id="@+id/btn_connect"
+                style="@style/PrimaryButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/btn_connect" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

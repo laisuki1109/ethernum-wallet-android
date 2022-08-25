@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/size_small">
+
+        <TextView
+            android:id="@+id/text_wc_name_title"
+            style="@style/TextRegular16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/wallet_connect_sign"
+            android:textColor="@color/colorPrimary"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/text_wc_type"
+            style="@style/TextRegular12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/text_wc_name_title"
+            tools:text="Wallet connect session type" />
+
+        <TextView
+            android:id="@+id/text_wc_msg_title"
+            style="@style/TextRegular16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_small"
+            android:text="@string/wallet_connect_message"
+            android:textColor="@color/colorBlack"
+            app:layout_constraintTop_toBottomOf="@id/text_wc_type" />
+
+        <TextView
+            android:id="@+id/text_wc_msg"
+            style="@style/TextRegular12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/text_wc_msg_title"
+            tools:text="Wallet connect session message" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_small"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/text_wc_msg">
+
+            <Button
+                android:id="@+id/btn_cancel"
+                style="@style/PrimaryButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/size_small"
+                android:layout_weight="1"
+                android:text="@string/btn_cancel" />
+
+            <Button
+                android:id="@+id/btn_sign"
+                style="@style/PrimaryButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/btn_sign" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

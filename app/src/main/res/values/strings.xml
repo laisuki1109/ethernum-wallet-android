@@ -10,15 +10,23 @@
     <string name="create_wallet_success_title">Create Wallet Success</string>
     <string name="restore_wallet_success_ok">See Wallet Abstract</string>
 
+    <!--   Button text -->
+    <string name="btn_connect">Connect</string>
+    <string name="btn_cancel">Cancel</string>
+    <string name="btn_ok">OK</string>
+    <string name="btn_sign">Sign</string>
+
     <!--    Wallet Abstract-->
     <string name="logout">Logout</string>
     <string name="copy_address">Copy Address</string>
     <string name="balance">Balance</string>
+    <string name="usdc_balance">USDC Balance</string>
     <string name="refresh">Refresh</string>
     <string name="send">Send</string>
     <string name="scan_qr_code">Scan QR Code</string>
     <string name="history">History</string>
     <string name="recover">Recover</string>
+    <string name="wallet_connect">Wallet Connect</string>
     <string name="dialog_title_recover">Please remember this 12 words by order to restore wallet.</string>
 
     <!--    Send Transaction-->
@@ -33,4 +41,20 @@
     <string name="header_scan_qrcode_disable">Scanner Disabled</string>
     <string name="sub_header_scan_qrcode_disable">Please enable camera to scan QR code to scan</string>
     <string name="btn_access_camera">Enable Access Camera</string>
+
+    <!-- Wallet Connect   -->
+    <string name="wallet_connect_session">Wallet Connect Session</string>
+    <string name="wallet_connect_delete_all">Delete All Idle session</string>
+    <string name="wallet_connect_kill">Kill Session</string>
+    <string name="wallet_connect_name">Name</string>
+    <string name="wallet_connect_url">Url</string>
+    <string name="wallet_connect_description">Description</string>
+    <string name="wallet_connect_chain">Chain -> </string>
+    <string name="wallet_connect_sign">Wallet Connect Sign</string>
+    <string name="wallet_connect_message">Wallet Connect Message</string>
+    <string name="wallet_connect_sign_transaction">Wallet Connect Sign Transaction</string>
+    <string name="wallet_connect_send_transaction">Wallet Connect Send Transaction</string>
+    <string name="wallet_connect_to_address">To Address</string>
+    <string name="wallet_connect_send_amount">Amount</string>
+    <string name="wallet_connect_gas">Gas</string>
 </resources>

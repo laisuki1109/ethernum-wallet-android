@@ -66,6 +66,7 @@
 
             <!--        balance-->
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_eth_balance"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/size_small"
@@ -100,32 +101,53 @@
                     tools:text="10000" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <LinearLayout
+            <!--        erc20 balance-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_token_balance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/size_small"
+                android:layout_marginTop="@dimen/size_small"
+                android:background="@drawable/bg_primary_border_16dp"
+                android:padding="@dimen/size_small">
+
+                <TextView
+                    android:id="@+id/title_erc_balance"
+                    style="@style/TextRegular16dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/usdc_balance"
+                    android:textColor="@color/colorBlack"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/text_erc_balance"
+                    style="@style/TextRegular16dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/size_small"
+                    android:textAlignment="viewEnd"
+                    android:textColor="@color/colorGrey"
+                    app:coinType="@{viewModel.erc20TokenCoinType}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/title_erc_balance"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:setErcBalance="@{viewModel.erc20TokenBalance}"
+                    tools:text="10000" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <Button
+                android:id="@+id/btn_refresh"
+                style="@style/PrimaryButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_small"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/btn_refresh"
-                    style="@style/PrimaryButton"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/size_small"
-                    android:onClick="@{ () -> viewModel.refresh()}"
-                    android:text="@string/refresh" />
-
-                <Button
-                    android:id="@+id/btn_send"
-                    style="@style/PrimaryButton"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/size_small"
-                    android:text="@string/send" />
-
-            </LinearLayout>
+                android:layout_marginHorizontal="@dimen/size_small"
+                android:onClick="@{ () -> viewModel.refresh()}"
+                android:text="@string/refresh" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -138,20 +160,29 @@
                     android:id="@+id/btn_history"
                     style="@style/PrimaryButton"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/size_small"
+                    android:layout_weight="1"
                     android:text="@string/history" />
 
                 <Button
                     android:id="@+id/btn_recover"
                     style="@style/PrimaryButton"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/size_small"
+                    android:layout_weight="1"
                     android:text="@string/recover" />
             </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_connect"
+                style="@style/PrimaryButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/size_small"
+                android:layout_marginTop="@dimen/size_small"
+                android:text="@string/wallet_connect" />
 
             <Button
                 android:id="@+id/btn_logout"

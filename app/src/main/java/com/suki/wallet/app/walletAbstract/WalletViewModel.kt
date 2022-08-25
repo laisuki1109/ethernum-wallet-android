@@ -10,6 +10,8 @@ import com.suki.wallet.Configuration
 import com.suki.wallet.MyApplication
 import com.suki.wallet.app.ethereumCore.EthereumAdapter
 import com.suki.wallet.base.SingleLiveEvent
+import com.suki.wallet.utility.EthKit
+import io.horizontalsystems.erc20kit.core.Erc20Kit
 import io.horizontalsystems.ethereumkit.core.EthereumKit
 import io.horizontalsystems.ethereumkit.core.signer.Signer
 import io.horizontalsystems.ethereumkit.core.toHexString
@@ -36,166 +38,100 @@ class WalletViewModel(application: Application) : BaseViewModel(application) {
     val addressEip55: MutableLiveData<String>
         get() = _addressEip55
 
-    private lateinit var ethereumKit: EthereumKit
-    private lateinit var ethereumAdapter: EthereumAdapter
-    private lateinit var signer: Signer
-
     val balance = MutableLiveData<BigDecimal>()
     val syncState = MutableLiveData<EthereumKit.SyncState>()
     val transactionsSyncState = MutableLiveData<EthereumKit.SyncState>()
 
-    val sendStatus = SingleLiveEvent<Throwable?>()
-    val estimatedGas = SingleLiveEvent<String>()
-    private var gasPrice: GasPrice = GasPrice.Legacy(20_000_000_000)
+//    erc20
+
+    val erc20SyncState = MutableLiveData<EthereumKit.SyncState>()
+    val erc20TransactionsSyncState = MutableLiveData<EthereumKit.SyncState>()
+    val erc20TokenBalance = MutableLiveData<BigDecimal>()
+    val erc20TokenCoinType = MutableLiveData<String>()
 
     fun init() {
         ioLaunch {
             try {
-                Security.removeProvider(BouncyCastleProvider.PROVIDER_NAME)
-                Security.addProvider(InternalBouncyCastleProvider.getInstance())
-                val seed = Mnemonic().toSeed(MyApplication.INSTANCE.addressWords.split(" "))
-                _addressEip55.postValue(Signer.address(seed, Configuration.chain).eip55)
-                signer = Signer.getInstance(seed, Configuration.chain)
-                ethereumKit = createKit()
-                ethereumAdapter = EthereumAdapter(ethereumKit, signer)
+                _addressEip55.postValue(Signer.address(EthKit.seed, Configuration.chain).eip55)
+                erc20TokenCoinType.postValue(Configuration.erc20Tokens.first().code)
+
                 updateBalance()
                 updateState()
                 updateTransactionsSyncState()
 
+                updateErc20Balance()
+                updateErc20State()
+                updateErc20TransactionsSyncState()
+
                 // Ethereum
-                ethereumAdapter.balanceFlowable.subscribe {
+                EthKit.ethereumAdapter.balanceFlowable.subscribe {
                     updateBalance()
                 }.let {
                     disposables.add(it)
                 }
 
-                ethereumAdapter.syncStateFlowable.subscribe {
+                EthKit.ethereumAdapter.syncStateFlowable.subscribe {
                     updateState()
                 }.let {
                     disposables.add(it)
                 }
 
-                ethereumAdapter.transactionsSyncStateFlowable.subscribe {
+                EthKit.ethereumAdapter.transactionsSyncStateFlowable.subscribe {
                     updateTransactionsSyncState()
                 }.let {
                     disposables.add(it)
                 }
 
-                ethereumAdapter.start()
+                EthKit.ethereumAdapter.start()
             } catch (e: Exception) {
-                throw ErrorException(Error(Constants.RESPONSE_WALLET_ERROR, "Ethereum Kit Exception", e.message), null)
+                throw ErrorException(
+                    Error(
+                        Constants.RESPONSE_WALLET_ERROR,
+                        "Ethereum Kit Exception",
+                        e.message
+                    ), null
+                )
             }
         }
-    }
-
-    private fun createKit(): EthereumKit {
-        val rpcSource: RpcSource?
-        val transactionSource: TransactionSource?
-
-        when (Configuration.chain) {
-            Chain.BinanceSmartChain -> {
-                transactionSource = TransactionSource.bscscan(Configuration.bscScanKey)
-                rpcSource = if (Configuration.webSocket)
-                    RpcSource.binanceSmartChainWebSocket()
-                else
-                    RpcSource.binanceSmartChainHttp()
-            }
-            Chain.Ethereum -> {
-                transactionSource = TransactionSource.ethereumEtherscan(Configuration.etherscanKey)
-                rpcSource = if (Configuration.webSocket)
-                    RpcSource.ethereumInfuraWebSocket(Configuration.infuraProjectId, Configuration.infuraSecret)
-                else
-                    RpcSource.ethereumInfuraHttp(Configuration.infuraProjectId, Configuration.infuraSecret)
-            }
-            Chain.EthereumRopsten -> {
-                transactionSource = TransactionSource.ropstenEtherscan(Configuration.etherscanKey)
-                rpcSource = if (Configuration.webSocket)
-                    RpcSource.ropstenInfuraWebSocket(Configuration.infuraProjectId, Configuration.infuraSecret)
-                else
-                    RpcSource.ropstenInfuraHttp(Configuration.infuraProjectId, Configuration.infuraSecret)
-            }
-            else -> {
-                rpcSource = null
-                transactionSource = null
-            }
-        }
-
-        checkNotNull(rpcSource) {
-            throw Exception("Could not get rpcSource!")
-        }
-
-        checkNotNull(transactionSource) {
-            throw Exception("Could not get transactionSource!")
-        }
-
-        val words = MyApplication.INSTANCE.addressWords.split(" ")
-        return EthereumKit.getInstance(
-            MyApplication.INSTANCE, words, "",
-            Configuration.chain, rpcSource, transactionSource,
-            Configuration.walletId
-        )
     }
 
     private fun updateBalance() {
-        balance.postValue(ethereumAdapter.balance)
+        balance.postValue(EthKit.ethereumAdapter.balance)
     }
 
     private fun updateState() {
-        syncState.postValue(ethereumAdapter.syncState)
+        syncState.postValue(EthKit.ethereumAdapter.syncState)
     }
 
     private fun updateTransactionsSyncState() {
-        transactionsSyncState.postValue(ethereumAdapter.transactionsSyncState)
+        transactionsSyncState.postValue(EthKit.ethereumAdapter.transactionsSyncState)
+    }
+
+    private fun updateErc20State() {
+        erc20SyncState.postValue(EthKit.erc20Adapter.syncState)
+    }
+
+    private fun updateErc20TransactionsSyncState() {
+        erc20TransactionsSyncState.postValue(EthKit.erc20Adapter.transactionsSyncState)
+    }
+
+    private fun updateErc20Balance() {
+        erc20TokenBalance.postValue(EthKit.erc20Adapter.balance)
     }
 
     fun refresh() {
         Timber.i("refresh is clicked")
-        ethereumAdapter.refresh()
+        EthKit.ethereumAdapter.refresh()
+        EthKit.erc20Adapter.refresh()
+        updateBalance()
+        updateErc20Balance()
     }
 
     fun clear() {
         Timber.i("clear is called")
         EthereumKit.clear(MyApplication.INSTANCE, Configuration.chain, Configuration.walletId)
+        Erc20Kit.clear(MyApplication.INSTANCE, Configuration.chain, Configuration.walletId)
+//        init()
     }
 
-    fun estimateGas(toAddress: String?, value: BigDecimal) {
-        estimatedGas.postValue(null)
-
-        if (toAddress == null) return
-
-        val estimateSingle = ethereumAdapter.estimatedGasLimit(Address(toAddress), value, gasPrice)
-
-        estimateSingle
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
-                //success
-                estimatedGas.value = it.toString()
-            }, {
-                Timber.i("Gas estimate: ${it.message}")
-                estimatedGas.value = it.message
-            })
-            .let { disposables.add(it) }
-    }
-
-    fun send(toAddress: String, amount: BigDecimal) {
-        val gasLimit = estimatedGas.value?.toLongOrNull() ?: kotlin.run {
-            sendStatus.value = Exception("No gas limit!!")
-            return
-        }
-
-        ethereumAdapter.send(Address(toAddress), amount, gasPrice, gasLimit)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({ fullTransaction ->
-                //success
-                Timber.i("Successfully sent, hash: ${fullTransaction.transaction.hash.toHexString()}")
-
-                sendStatus.value = null
-            }, {
-                Timber.i("Ether send failed: ${it.message}")
-                sendStatus.value = it
-            }).let { disposables.add(it) }
-
-    }
 }

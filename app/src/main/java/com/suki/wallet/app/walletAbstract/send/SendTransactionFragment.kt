@@ -20,12 +20,10 @@ import com.suki.wallet.app.scanQrCode.ScanQrCodeActivity
 import com.suki.wallet.app.walletAbstract.WalletViewModel
 import com.suki.wallet.app.walletAbstract.WalletViewModelFactory
 import com.suki.wallet.databinding.FragmentSendTransactionBinding
+import com.suki.wallet.utility.EthKit
 
 
-class SendTransactionFragment : BaseFragment<WalletViewModel>() {
-    companion object {
-        fun newInstance() = SendTransactionFragment()
-    }
+class SendTransactionFragment(val isErcToken: Boolean) : BaseFragment<WalletViewModel>() {
     override val viewModel by lazy {
         setUpViewModel(
             ViewModelProvider(
@@ -41,8 +39,9 @@ class SendTransactionFragment : BaseFragment<WalletViewModel>() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_send_transaction, container, false)
-        binding.lifecycleOwner= this
+        binding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_send_transaction, container, false)
+        binding.lifecycleOwner = this
         binding.viewModel = viewModel
         binding.executePendingBindings()
         return binding.root
@@ -51,13 +50,21 @@ class SendTransactionFragment : BaseFragment<WalletViewModel>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupToolbar(binding.toolbar)
-        binding.btnScan.setOnClickListener{ goToScanQrCode() }
+        binding.btnScan.setOnClickListener { goToScanQrCode() }
         binding.btnSend.setOnClickListener {
-            viewModel.send(binding.inputWallet.editText?.text.toString(), binding.inputAmount.editText?.text.toString().toBigDecimal())
+            EthKit.send(
+                binding.inputWallet.editText?.text.toString(),
+                binding.inputAmount.editText?.text.toString().toBigDecimal(),
+                isErcToken
+            )
         }
         binding.inputAmount.editText?.doOnTextChanged { text, start, before, count ->
-            if (!binding.inputWallet.editText?.text.isNullOrEmpty() && !binding.inputAmount.editText?.text.isNullOrEmpty()){
-                viewModel.estimateGas(binding.inputWallet.editText?.text.toString(), binding.inputAmount.editText?.text.toString().toBigDecimal())
+            if (!binding.inputWallet.editText?.text.isNullOrEmpty() && !binding.inputAmount.editText?.text.isNullOrEmpty()) {
+                EthKit.estimateGas(
+                    binding.inputWallet.editText?.text.toString(),
+                    binding.inputAmount.editText?.text.toString().toBigDecimal(),
+                    isErcToken
+                )
             } else {
                 binding.textGasEstimated.text = resources.getString(R.string.estimated_gas) + "null"
             }
@@ -67,7 +74,7 @@ class SendTransactionFragment : BaseFragment<WalletViewModel>() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == Constants.REQUEST_SCAN_QR_CODE && resultCode == Activity.RESULT_OK){
+        if (requestCode == Constants.REQUEST_SCAN_QR_CODE && resultCode == Activity.RESULT_OK) {
             val toWalletAddress = data?.getStringExtra(Constants.EXTRA_WALLET_ADDRESS)
             binding.inputWallet.editText?.setText(toWalletAddress)
         }
@@ -87,22 +94,23 @@ class SendTransactionFragment : BaseFragment<WalletViewModel>() {
         }
     }
 
-    private fun goToScanQrCode(){
+    private fun goToScanQrCode() {
         val intent = Intent(requireContext(), ScanQrCodeActivity::class.java)
         startActivityForResult(intent, Constants.REQUEST_SCAN_QR_CODE)
     }
 
-    private fun handleObserver(){
-        viewModel.estimatedGas.observe(viewLifecycleOwner, Observer {
+    private fun handleObserver() {
+        EthKit.estimatedGas.observe(viewLifecycleOwner, Observer {
             binding.textGasEstimated.text = resources.getString(R.string.estimated_gas) + it
         })
 
-        viewModel.sendStatus.observe(viewLifecycleOwner, Observer{
-            if (it == null){
+        EthKit.sendStatus.observe(viewLifecycleOwner, Observer {
+            if (it == null) {
                 Toast.makeText(requireContext(), "Send Successfully", Toast.LENGTH_LONG).show()
                 requireActivity().onBackPressed()
             } else {
-                Toast.makeText(requireContext(), "Send Error: ${it.message}", Toast.LENGTH_LONG).show()
+                Toast.makeText(requireContext(), "Send Error: ${it.message}", Toast.LENGTH_LONG)
+                    .show()
             }
         })
     }
